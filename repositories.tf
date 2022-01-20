@@ -15,6 +15,6 @@ resource "github_team_repository" "teleport" {
   }
 
   team_id    = each.value.team_id
-  repository = github_repository.kube-base.id
+  repository = github_repository.teleport.id
   permission = each.value.permission
 }
