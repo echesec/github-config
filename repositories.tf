@@ -1,13 +1,13 @@
 #######################################################################################################################
-# Create github-config repository
-resource "github_repository" "github-config" {
-  name = "github-config"
+# Create teleport repository
+resource "github_repository" "teleport" {
+  name = "teleport"
 }
 
-# Add memberships for github-config repository
-resource "github_team_repository" "github-config" {
+# Add memberships for kube-apps repository
+resource "github_team_repository" "teleport" {
   for_each = {
-    for team in local.repo_teams_files["github-config"] :
+    for team in local.repo_teams_files["teleport"] :
     team.team_name => {
       team_id    = github_team.all[team.team_name].id
       permission = team.permission
@@ -15,7 +15,6 @@ resource "github_team_repository" "github-config" {
   }
 
   team_id    = each.value.team_id
-  repository = github_repository.github-config.id
+  repository = github_repository.kube-base.id
   permission = each.value.permission
 }
-
