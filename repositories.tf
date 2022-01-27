@@ -2,6 +2,7 @@
 # Create kube-core repository
 resource "github_repository" "kube-core" {
   name = "kube-core"
+  description = "Terraform manifests to create and provision a Kubernetes cluster and ArgoCD."
 }
 
 # Add memberships for kube-apps repository
