@@ -1,4 +1,4 @@
 name,description,privacy
-Developers,Application developers,closed
-Operations,Infrastructure support application owners,closed
-Security,Pull approvers and Policy as Code owners,closed
+developers,Application developers,closed
+operations,Infrastructure support application owners,closed
+security,Pull approvers and Policy as Code owners,closed
