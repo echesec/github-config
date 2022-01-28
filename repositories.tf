@@ -1,8 +1,8 @@
 #######################################################################################################################
 # Create kube-core repository
-resource "github_repository" "kube-core" {
+resource "github_repository" "argocd" {
   name = "kube-core"
-  description = "Terraform manifests to create and provision a Kubernetes cluster and ArgoCD."
+  description = "Helm and Kustomize manifests to deploy ArgoCD to Kubernetes."
 }
 
 # Add memberships for kube-apps repository
