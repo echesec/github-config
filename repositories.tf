@@ -19,3 +19,14 @@ resource "github_team_repository" "kubescreen" {
   repository = github_repository.kubescreen.id
   permission = each.value.permission
 }
+
+# Set the default branch as "main"
+resource "github_branch" "main" {
+  repository = github_repository.kubescreen.name
+  branch     = "main"
+}
+
+resource "github_branch_default" "default"{
+  repository = github_repository.kubescreen.name
+  branch     = github_branch.main.branch
+}
