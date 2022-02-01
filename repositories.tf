@@ -35,16 +35,16 @@ resource "github_branch_default" "kubescreen-default"{
 
 
 #######################################################################################################################
-# Create foo repository
-resource "github_repository" "foo" {
-  name = "foo"
+# Create payment-app repository
+resource "github_repository" "payment-app" {
+  name = "payment-app"
   description = "Deploy and secure a Kubernetes cluster using GitOps."
 }
 
 # Add memberships for kube-apps repository
-resource "github_team_repository" "foo" {
+resource "github_team_repository" "payment-app" {
   for_each = {
-    for team in local.repo_teams_files["foo"] :
+    for team in local.repo_teams_files["payment-app"] :
     team.team_name => {
       team_id    = github_team.all[team.team_name].id
       permission = team.permission
@@ -52,17 +52,17 @@ resource "github_team_repository" "foo" {
   }
 
   team_id    = each.value.team_id
-  repository = github_repository.foo.id
+  repository = github_repository.pci_app.id
   permission = each.value.permission
 }
 
 # Set the default branch as "main"
-resource "github_branch" "foo-main" {
-  repository = github_repository.foo.name
+resource "github_branch" "payment-app-main" {
+  repository = github_repository.payment-app.name
   branch     = "main"
 }
 
-resource "github_branch_default" "foo-default"{
-  repository = github_repository.foo.name
-  branch     = github_branch.foo-main.branch
+resource "github_branch_default" "payment-app-default"{
+  repository = github_repository.payment-app.name
+  branch     = github_branch.payment-app-main.branch
 }
