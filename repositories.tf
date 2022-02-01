@@ -21,14 +21,14 @@ resource "github_team_repository" "kubescreen" {
 }
 
 # Set the default branch as "main"
-resource "github_branch" "main" {
+resource "github_branch" "kubescreen-main" {
   repository = github_repository.kubescreen.name
   branch     = "main"
 }
 
-resource "github_branch_default" "default"{
+resource "github_branch_default" "kubescreen-default"{
   repository = github_repository.kubescreen.name
-  branch     = github_branch.main.branch
+  branch     = github_branch.kubescreen-main.branch
 }
 
 
@@ -57,12 +57,12 @@ resource "github_team_repository" "foo" {
 }
 
 # Set the default branch as "main"
-resource "github_branch" "main" {
+resource "github_branch" "foo-main" {
   repository = github_repository.foo.name
   branch     = "main"
 }
 
-resource "github_branch_default" "default"{
+resource "github_branch_default" "foo-default"{
   repository = github_repository.foo.name
-  branch     = github_branch.main.branch
+  branch     = github_branch.foo-main.branch
 }
