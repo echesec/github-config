@@ -52,7 +52,7 @@ resource "github_team_repository" "payment-app" {
   }
 
   team_id    = each.value.team_id
-  repository = github_repository.pci_app.id
+  repository = github_repository.payment-app.id
   permission = each.value.permission
 }
 
