@@ -1,14 +1,14 @@
 #######################################################################################################################
-# Create kube-core repository
-resource "github_repository" "argocd" {
-  name = "kube-core"
-  description = "Helm and Kustomize manifests to deploy ArgoCD to Kubernetes."
+# Create kubescreen repository
+resource "github_repository" "kubescreen" {
+  name = "kubescreen"
+  description = "Deploy and secure a Kubernetes cluster using GitOps."
 }
 
 # Add memberships for kube-apps repository
-resource "github_team_repository" "kube-core" {
+resource "github_team_repository" "kubescreen" {
   for_each = {
-    for team in local.repo_teams_files["kube-core"] :
+    for team in local.repo_teams_files["kubescreen"] :
     team.team_name => {
       team_id    = github_team.all[team.team_name].id
       permission = team.permission
@@ -16,6 +16,6 @@ resource "github_team_repository" "kube-core" {
   }
 
   team_id    = each.value.team_id
-  repository = github_repository.kube-core.id
+  repository = github_repository.kubescreen.id
   permission = each.value.permission
 }
