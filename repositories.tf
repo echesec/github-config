@@ -3,7 +3,6 @@
 resource "github_repository" "kubescreen" {
   name = "kubescreen"
   description = "Deploy and secure a Kubernetes cluster using GitOps."
-
 }
 
 # Add memberships for kube-apps repository
@@ -21,10 +20,6 @@ resource "github_team_repository" "kubescreen" {
   permission = each.value.permission
 }
 
-resource "github_branch" "gh-pages" {
-  repository = github_repository.kubescreen.id
-  branch     = "gh-pages"
-}
 
 #######################################################################################################################
 # Create payments repository
