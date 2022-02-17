@@ -14,13 +14,6 @@ resource "github_repository" "kubescreen" {
 
 # Add memberships for kube-apps repository
 resource "github_team_repository" "kubescreen" {
-  pages {
-    source {
-      branch = "master"
-      path   = "/docs"
-    }
-  }
-
   for_each = {
     for team in local.repo_teams_files["kubescreen"] :
     team.team_name => {
@@ -56,3 +49,4 @@ resource "github_team_repository" "payments" {
   repository = github_repository.payments.id
   permission = each.value.permission
 }
+
