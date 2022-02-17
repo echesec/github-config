@@ -15,16 +15,16 @@ resource "github_team_repository" "kubescreen" {
     } if lookup(github_team.all, team.team_name, false) != false
   }
 
+  team_id    = each.value.team_id
+  repository = github_repository.kubescreen.id
+  permission = each.value.permission
+
   pages {
     source {
       branch = "master"
       path   = "/docs"
     }
   }
-
-  team_id    = each.value.team_id
-  repository = github_repository.kubescreen.id
-  permission = each.value.permission
 }
 
 
