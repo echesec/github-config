@@ -43,3 +43,26 @@ resource "github_team_repository" "payments" {
   permission = each.value.permission
 }
 
+
+#######################################################################################################################
+# Create cluster-policies repository
+resource "github_repository" "cluster-policies" {
+  name = "cluster-policies"
+  description = "Kyverno enforcement policies."
+}
+
+# Add memberships for kube-apps repository
+resource "github_team_repository" "cluster-policies" {
+  for_each = {
+    for team in local.repo_teams_files["cluster-policies"] :
+    team.team_name => {
+      team_id    = github_team.all[team.team_name].id
+      permission = team.permission
+    } if lookup(github_team.all, team.team_name, false) != false
+  }
+
+  team_id    = each.value.team_id
+  repository = github_repository.cluster-policies.id
+  permission = each.value.permission
+}
+
