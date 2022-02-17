@@ -20,6 +20,7 @@ resource "github_team_repository" "kubescreen" {
       branch = "master"
       path   = "/docs"
     }
+  }
 
   team_id    = each.value.team_id
   repository = github_repository.kubescreen.id
