@@ -3,6 +3,13 @@
 resource "github_repository" "kubescreen" {
   name = "kubescreen"
   description = "Deploy and secure a Kubernetes cluster using GitOps."
+
+  pages {
+    source {
+      branch = "master"
+      path   = "/docs"
+    }
+  }
 }
 
 # Add memberships for kube-apps repository
