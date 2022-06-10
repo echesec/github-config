@@ -1,14 +1,14 @@
 #######################################################################################################################
 # Create kubescreen repository
-resource "github_repository" "kubescreen" {
-  name = "kubescreen"
+resource "github_repository" "shieldsup" {
+  name = "shields-up"
   description = "Deploy and secure a Kubernetes cluster using GitOps."
 }
 
-# Add memberships for kube-apps repository
-resource "github_team_repository" "kubescreen" {
+# Add memberships for repository
+resource "github_team_repository" "shieldsup" {
   for_each = {
-    for team in local.repo_teams_files["kubescreen"] :
+    for team in local.repo_teams_files["shieldsup"] :
     team.team_name => {
       team_id    = github_team.all[team.team_name].id
       permission = team.permission
@@ -16,7 +16,7 @@ resource "github_team_repository" "kubescreen" {
   }
 
   team_id    = each.value.team_id
-  repository = github_repository.kubescreen.id
+  repository = github_repository.shieldsup.id
   permission = each.value.permission
 }
 
